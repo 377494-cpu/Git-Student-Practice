@@ -1,0 +1,154 @@
+[
+  {
+    "identity": {
+      "firstName": "Arsen",
+      "lastName": "Harutyunyan",
+      "birthday": "2007-06-15",
+      "gender": "Male"
+    },
+    "physicalStats": {
+      "height": "5'10\"",
+      "weight": "220 lbs",
+      "hairColor": "Dark Brown",
+      "ethnicity": "Armenian"
+    },
+    "favorites": {
+      "foodCuisine": "Caucasian",
+      "artist": "Travis Scott",
+      "color": "Purple",
+      "show": "Loki",
+      "movie": "Avatar",
+      "book": "Where the Mountain Meets the Moon"
+    },
+    "gymStats": {
+      "prBench": "225 lbs",
+      "prSquat": "250 lbs",
+      "prDeadlift": "300 lbs"
+    },
+    "skillsAndInterests": {
+      "hobbies": [
+        "Music Production",
+        "PC Building"
+      ],
+      "languages": [
+        "English",
+        "Armenian",
+        "Russian"
+      ],
+      "codingExperience": "2 Years (HTML, PHP)"
+    }
+  },
+  {
+    "identity": {
+      "firstName": "Zaid",
+      "lastName": "Nazar",
+      "birthday": "2009-04-04",
+      "gender": "Male"
+    },
+    "physicalStats": {
+      "height": "5'11\"",
+      "weight": "135 lbs",
+      "hairColor": "Dark Brown",
+      "ethnicity": "Afghan"
+    },
+    "favorites": {
+      "foodCuisine": "Middle Eastern",
+      "artist": "Drake",
+      "color": "Blue",
+      "show": "Ozark",
+      "movie": "Real Steel",
+      "book": "Hamlet"
+    },
+    "gymStats": {
+      "prBench": "135 lbs",
+      "prSquat": "185 lbs",
+      "prDeadlift": "225 lbs"
+    },
+    "skillsAndInterests": {
+      "hobbies": [
+        "Soccer",
+        "School"
+      ],
+      "languages": [
+        "English",
+        "Farsi"
+      ],
+      "codingExperience": "2 Years (Python, C++)"
+    }
+  },
+  {
+    "identity": {
+      "firstName": "Nick",
+      "lastName": "Jaramillo",
+      "birthday": "2010-01-16",
+      "gender": "Male"
+    },
+    "physicalStats": {
+      "height": "5'3\"",
+      "weight": "125 lbs",
+      "hairColor": "Brown",
+      "ethnicity": "Mexican"
+    },
+    "favorites": {
+      "foodCuisine": "Mexican",
+      "artist": "XavierSoBased",
+      "color": "Baby Blue",
+      "show": "13 Reasons Why",
+      "movie": "Megan Is Missing",
+      "book": "Unknown"
+    },
+    "gymStats": {
+      "prBench": "100 lbs",
+      "prSquat": "150 lbs",
+      "prDeadlift": "200 lbs"
+    },
+    "skillsAndInterests": {
+      "hobbies": [
+        "Music",
+        "Clothes"
+      ],
+      "languages": [
+        "English",
+        "French"
+      ],
+      "codingExperience": "5 Years (Python, C++)"
+    }
+  },
+  {
+    "identity": {
+      "firstName": "Darius",
+      "lastName": "Duplechan",
+      "birthday": "2009-09-06",
+      "gender": "Male"
+    },
+    "physicalStats": {
+      "height": "5'10\"",
+      "weight": "220 lbs",
+      "hairColor": "Black",
+      "ethnicity": "American"
+    },
+    "favorites": {
+      "foodCuisine": "American",
+      "artist": "Eve (Japanese Artist)",
+      "color": "Blue, Black, and Red",
+      "show": "N/A",
+      "movie": "N/A",
+      "book": "N/A"
+    },
+    "gymStats": {
+      "prBench": "135 lbs",
+      "prSquat": "185 lbs",
+      "prDeadlift": "225 lbs"
+    },
+    "skillsAndInterests": {
+      "hobbies": [
+        "YouTube",
+        "Gaming"
+      ],
+      "languages": [
+        "English"
+      ],
+      "codingExperience": "2 Years (HTML, CSS, PHP, JSON)"
+    }
+  }
+]
