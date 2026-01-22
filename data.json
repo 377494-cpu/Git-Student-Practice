@@ -3,7 +3,7 @@
     "identity": {
       "firstName": "Arsen",
       "lastName": "Harutyunyan",
-      "birthday": "2007-06-15",
+      "birthday": "2009-06-15",
       "gender": "Male"
     },
     "physicalStats": {
@@ -95,23 +95,22 @@
       "color": "Baby Blue",
       "show": "13 Reasons Why",
       "movie": "Megan Is Missing",
-      "book": "Unknown"
+      "book": "Diary of the Wimpy Kid"
     },
     "gymStats": {
       "prBench": "100 lbs",
       "prSquat": "150 lbs",
       "prDeadlift": "200 lbs"
     },
-    "skillsAndInterests": {
+    "skillsAndInterests": {Music Drawing Painting
       "hobbies": [
         "Music",
         "Clothes"
       ],
       "languages": [
-        "English",
-        "French"
+        "English"
       ],
-      "codingExperience": "5 Years (Python, C++)"
+      "codingExperience": "1 Years (Python, C++)"
     }
   },
   {
@@ -131,9 +130,9 @@
       "foodCuisine": "American",
       "artist": "Eve (Japanese Artist)",
       "color": "Blue, Black, and Red",
-      "show": "N/A",
-      "movie": "N/A",
-      "book": "N/A"
+      "show": "Naruto",
+      "movie": "Transformers One",
+      "book": "I Spy"
     },
     "gymStats": {
       "prBench": "135 lbs",
