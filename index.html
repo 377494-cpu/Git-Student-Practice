@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Profile Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #fff;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .profiles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .name {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .birthday {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .section {
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00d2ff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        
+        .info-item {
+            font-size: 0.9rem;
+        }
+        
+        .info-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: rgba(0, 210, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #00d2ff;
+        }
+        
+        .gym-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+        
+        .stat {
+            text-align: center;
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #3a7bd5;
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>Profile Viewer</h1>
+    <div class="profiles-container" id="profiles"></div>
+
+    <script>
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('profiles');
+                
+                data.forEach(person => {
+                    const initials = person.identity.firstName[0] + person.identity.lastName[0];
+                    const card = document.createElement('div');
+                    card.className = 'profile-card';
+                    
+                    card.innerHTML = `
+                        <div class="profile-header">
+                            <div class="avatar">${initials}</div>
+                            <div>
+                                <div class="name">${person.identity.firstName} ${person.identity.lastName}</div>
+                                <div class="birthday">${person.identity.birthday} | ${person.identity.gender}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-title">Physical Stats</div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Height</div>
+                                    ${person.physicalStats.height}
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Weight</div>
+                                    ${person.physicalStats.weight}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-title">Gym PRs</div>
+                            <div class="gym-stats">
+                                <div class="stat">
+                                    <div class="stat-value">${person.gymStats.prBench}</div>
+                                    <div class="stat-label">Bench</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">${person.gymStats.prSquat}</div>
+                                    <div class="stat-label">Squat</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">${person.gymStats.prDeadlift}</div>
+                                    <div class="stat-label">Deadlift</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-title">Favorites</div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Cuisine</div>
+                                    ${person.favorites.foodCuisine}
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Artist</div>
+                                    ${person.favorites.artist}
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Show</div>
+                                    ${person.favorites.show}
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Movie</div>
+                                    ${person.favorites.movie}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-title">Languages</div>
+                            <div class="tags">
+                                ${person.skillsAndInterests.languages.map(lang => `<span class="tag">${lang}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-title">Hobbies</div>
+                            <div class="tags">
+                                ${person.skillsAndInterests.hobbies.map(hobby => `<span class="tag">${hobby}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-title">Coding Experience</div>
+                            <div class="info-item">${person.skillsAndInterests.codingExperience}</div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+                document.getElementById('profiles').innerHTML = '<p style="text-align: center;">Error loading profiles</p>';
+            });
+    </script>
+</body>
+</html>
