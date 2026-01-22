@@ -43,7 +43,9 @@
       "firstName": "Zaid",
       "lastName": "Nazar",
       "birthday": "2009-04-04",
-      "gender": "Male"
+      "gender": "Male",
+      "location": "New York, USA",
+      "tagline": "Aspiring Developer & Soccer Enthusiast"
     },
     "physicalStats": {
       "height": "5'11\"",
@@ -67,13 +69,21 @@
     "skillsAndInterests": {
       "hobbies": [
         "Soccer",
-        "School"
+        "School",
+        "Gaming",
+        "Photography"
       ],
       "languages": [
         "English",
-        "Farsi"
+        "Farsi",
+        "Spanish"
       ],
-      "codingExperience": "2 Years (Python, C++)"
+      "codingExperience": "2 Years (Python, C++, HTML, CSS)",
+      "projects": [
+        "Personal Portfolio",
+        "Data Scraper",
+        "Simple Game Engine"
+      ]
     }
   },
   {
