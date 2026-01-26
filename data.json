@@ -44,7 +44,7 @@
       "lastName": "Nazar",
       "birthday": "2009-04-04",
       "gender": "Male",
-      "location": "New York, USA",
+      "location": "San Diego, USA",
       "tagline": "Aspiring Developer & Soccer Enthusiast"
     },
     "physicalStats": {
@@ -76,7 +76,10 @@
       "languages": [
         "English",
         "Farsi",
-        "Spanish"
+        "Spanish",
+        "Dari",
+        "French",
+        "Arabic"
       ],
       "codingExperience": "2 Years (Python, C++, HTML, CSS)",
       "projects": [
