@@ -1,3 +1,4 @@
+<?php require_once 'functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,10 +236,7 @@
         </div>
 
         <div class="privacy-container privacy-locked" id="privacy-box">
-            <div class="privacy-overlay" onclick="unlockProfile('Arsen')">
-                <i class="fas fa-eye-slash"></i>
-                <p>Click to Unlock Profile</p>
-            </div>
+            <?php echo renderPrivacyOverlay('Arsen', 'privacy-box'); ?>
             <div class="grid">
                 <!-- Identity -->
                 <div class="card">
@@ -332,16 +330,6 @@
     </div>
 
     <script>
-        function unlockProfile(correctName) {
-            const nameInput = prompt("Enter the first name of the person whose profile this is:");
-            if (nameInput && nameInput.toLowerCase() === correctName.toLowerCase()) {
-                document.getElementById('privacy-box').classList.remove('privacy-locked');
-                document.getElementById('privacy-box').classList.add('privacy-unlocked');
-            } else if (nameInput) {
-                alert("Incorrect name. Access denied.");
-            }
-        }
-
         fetch('data.json')
             .then(res => res.json())
             .then(data => {
