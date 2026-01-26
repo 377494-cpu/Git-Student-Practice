@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darius Duplechan | Personal Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+            border: 4px solid var(--glass-border);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #f1f5f9;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+        }
+
+        .info-list li span:last-child {
+            color: white;
+            font-weight: 500;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(0, 210, 255, 0.15);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        .interactive-section {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Profiles
+        </a>
+
+        <div class="hero">
+            <div class="profile-img">DD</div>
+            <h1 id="full-name">Darius Duplechan</h1>
+            <p class="tagline" id="tagline">Tech Enthusiast & Aspiring Developer</p>
+        </div>
+
+        <div class="grid">
+            <!-- Identity -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-user"></i>
+                    <h2>Identity</h2>
+                </div>
+                <ul class="info-list">
+                    <li><span>Birthday</span> <span id="birthday">-</span></li>
+                    <li><span>Gender</span> <span id="gender">-</span></li>
+                    <li><span>Location</span> <span id="location">-</span></li>
+                    <li><span>Ethnicity</span> <span id="ethnicity">-</span></li>
+                </ul>
+            </div>
+
+            <!-- Gym PRs -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-dumbbell"></i>
+                    <h2>Gym Statistics</h2>
+                </div>
+                <div class="info-list">
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Bench Press</span>
+                            <span id="bench">-</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Squat</span>
+                            <span id="squat">-</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Deadlift</span>
+                            <span id="deadlift">-</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorites -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-heart"></i>
+                    <h2>Favorites</h2>
+                </div>
+                <ul class="info-list">
+                    <li><span>Cuisine</span> <span id="cuisine">-</span></li>
+                    <li><span>Artist</span> <span id="artist">-</span></li>
+                    <li><span>Movie</span> <span id="movie">-</span></li>
+                    <li><span>Show</span> <span id="show">-</span></li>
+                    <li><span>Book</span> <span id="book">-</span></li>
+                </ul>
+            </div>
+
+            <!-- Skills & Projects -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-code"></i>
+                    <h2>Coding & Projects</h2>
+                </div>
+                <p id="coding-exp" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;"></p>
+                <div class="tags" id="projects-tags"></div>
+            </div>
+
+            <!-- Hobbies -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-icons"></i>
+                    <h2>Hobbies & Interests</h2>
+                </div>
+                <div class="tags" id="hobbies-tags"></div>
+            </div>
+
+            <!-- Languages -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-language"></i>
+                    <h2>Languages</h2>
+                </div>
+                <div class="tags" id="languages-tags"></div>
+            </div>
+        </div>
+
+        <div class="interactive-section floating">
+            <i class="fas fa-rocket" style="font-size: 3rem; color: var(--primary); opacity: 0.5;"></i>
+        </div>
+    </div>
+
+    <script>
+        fetch('data.json')
+            .then(res => res.json())
+            .then(data => {
+                const user = data.find(p => p.identity.firstName === "Darius");
+                if (!user) return;
+
+                document.getElementById('full-name').textContent = `${user.identity.firstName} ${user.identity.lastName}`;
+                document.getElementById('tagline').textContent = user.identity.tagline || "Tech Enthusiast & Aspiring Developer";
+                document.getElementById('birthday').textContent = user.identity.birthday;
+                document.getElementById('gender').textContent = user.identity.gender;
+                document.getElementById('location').textContent = user.identity.location || "N/A";
+                document.getElementById('ethnicity').textContent = user.physicalStats.ethnicity;
+
+                document.getElementById('bench').textContent = user.gymStats.prBench;
+                document.getElementById('squat').textContent = user.gymStats.prSquat;
+                document.getElementById('deadlift').textContent = user.gymStats.prDeadlift;
+
+                document.getElementById('cuisine').textContent = user.favorites.foodCuisine;
+                document.getElementById('artist').textContent = user.favorites.artist;
+                document.getElementById('movie').textContent = user.favorites.movie;
+                document.getElementById('show').textContent = user.favorites.show;
+                document.getElementById('book').textContent = user.favorites.book;
+
+                document.getElementById('coding-exp').textContent = user.skillsAndInterests.codingExperience;
+
+                const renderTags = (id, list) => {
+                    if (!list) return;
+                    const container = document.getElementById(id);
+                    list.forEach(item => {
+                        const span = document.createElement('span');
+                        span.className = 'tag';
+                        span.textContent = item;
+                        container.appendChild(span);
+                    });
+                };
+
+                renderTags('projects-tags', user.skillsAndInterests.projects);
+                renderTags('hobbies-tags', user.skillsAndInterests.hobbies);
+                renderTags('languages-tags', user.skillsAndInterests.languages);
+            });
+    </script>
+</body>
+</html>

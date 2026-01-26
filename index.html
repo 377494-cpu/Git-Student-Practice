@@ -171,7 +171,7 @@
                             <div>
                                 <div class="name">${person.identity.firstName} ${person.identity.lastName}</div>
                                 <div class="birthday">${person.identity.birthday} | ${person.identity.gender}</div>
-                                ${person.identity.firstName === 'Zaid' ? `<a href="/zaid.html" style="color: #00d2ff; text-decoration: none; font-size: 0.8rem; display: block; margin-top: 0.5rem;">View Full Profile →</a>` : ''}
+                                ${person.identity.firstName === 'Zaid' || person.identity.firstName === 'Darius' ? `<a href="/${person.identity.firstName.toLowerCase()}.html" style="color: #00d2ff; text-decoration: none; font-size: 0.8rem; display: block; margin-top: 0.5rem;">View Full Profile →</a>` : ''}
                             </div>
                         </div>
                         
