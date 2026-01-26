@@ -75,10 +75,62 @@
             margin-bottom: 2rem;
         }
 
+        .privacy-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .privacy-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(25px);
+            transition: all 0.5s ease;
+            border-radius: 24px;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+
+        .privacy-overlay i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
+
+        .privacy-overlay p {
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #f1f5f9;
+        }
+
+        .privacy-unlocked .privacy-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.1);
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            transition: filter 0.5s ease;
+        }
+
+        .privacy-locked .grid {
+            filter: blur(10px);
+            pointer-events: none;
         }
 
         .card {
@@ -88,13 +140,6 @@
             border-radius: 24px;
             padding: 2rem;
             transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .card-header {
@@ -175,26 +220,11 @@
         .back-btn:hover {
             color: var(--primary);
         }
-
-        .interactive-section {
-            margin-top: 4rem;
-            text-align: center;
-        }
-
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translate(0, 0px); }
-            50% { transform: translate(0, 15px); }
-            100% { transform: translate(0, -0px); }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">
+        <a href="index.php" class="back-btn">
             <i class="fas fa-arrow-left"></i> Back to Profiles
         </a>
 
@@ -204,133 +234,139 @@
             <p class="tagline" id="tagline">Student & Tech Enthusiast</p>
         </div>
 
-        <div class="grid">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-user"></i>
-                    <h2>Identity</h2>
-                </div>
-                <ul class="info-list">
-                    <li><span>Birthday</span> <span id="birthday">-</span></li>
-                    <li><span>Gender</span> <span id="gender">-</span></li>
-                    <li><span>Location</span> <span id="location">-</span></li>
-                    <li><span>Ethnicity</span> <span id="ethnicity">-</span></li>
-                </ul>
+        <div class="privacy-container privacy-locked" id="privacy-box">
+            <div class="privacy-overlay" onclick="unlockProfile('Arsen')">
+                <i class="fas fa-eye-slash"></i>
+                <p>Click to Unlock Profile</p>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-dumbbell"></i>
-                    <h2>Gym Statistics</h2>
-                </div>
-                <div class="info-list">
-                    <div style="margin-bottom: 1rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span>Bench Press</span>
-                            <span id="bench">-</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
+            <div class="grid">
+                <!-- Identity -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-user"></i>
+                        <h2>Identity</h2>
                     </div>
-                    <div style="margin-bottom: 1rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span>Squat</span>
-                            <span id="squat">-</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+                    <ul class="info-list">
+                        <li><span>Birthday</span> <span id="birthday">-</span></li>
+                        <li><span>Gender</span> <span id="gender">-</span></li>
+                        <li><span>Location</span> <span id="location">-</span></li>
+                        <li><span>Ethnicity</span> <span id="ethnicity">-</span></li>
+                    </ul>
+                </div>
+
+                <!-- Gym Statistics -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-dumbbell"></i>
+                        <h2>Gym Statistics</h2>
                     </div>
-                    <div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span>Deadlift</span>
-                            <span id="deadlift">-</span>
+                    <div class="info-list">
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Bench Press</span>
+                                <span id="bench">-</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
                         </div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Squat</span>
+                                <span id="squat">-</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Deadlift</span>
+                                <span id="deadlift">-</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-heart"></i>
-                    <h2>Favorites</h2>
+                <!-- Favorites -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-heart"></i>
+                        <h2>Favorites</h2>
+                    </div>
+                    <ul class="info-list">
+                        <li><span>Cuisine</span> <span id="cuisine">-</span></li>
+                        <li><span>Artist</span> <span id="artist">-</span></li>
+                        <li><span>Movie</span> <span id="movie">-</span></li>
+                        <li><span>Show</span> <span id="show">-</span></li>
+                        <li><span>Book</span> <span id="book">-</span></li>
+                    </ul>
                 </div>
-                <ul class="info-list">
-                    <li><span>Cuisine</span> <span id="cuisine">-</span></li>
-                    <li><span>Artist</span> <span id="artist">-</span></li>
-                    <li><span>Movie</span> <span id="movie">-</span></li>
-                    <li><span>Show</span> <span id="show">-</span></li>
-                    <li><span>Book</span> <span id="book">-</span></li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-code"></i>
-                    <h2>Coding & Projects</h2>
+                <!-- Coding & Projects -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-code"></i>
+                        <h2>Coding & Projects</h2>
+                    </div>
+                    <p id="coding-exp" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;"></p>
+                    <div class="tags" id="projects-tags"></div>
                 </div>
-                <p id="coding-exp" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;"></p>
-                <div class="tags" id="projects-tags"></div>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-icons"></i>
-                    <h2>Hobbies & Interests</h2>
+                <!-- Hobbies -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-icons"></i>
+                        <h2>Hobbies</h2>
+                    </div>
+                    <div class="tags" id="hobbies-tags"></div>
                 </div>
-                <div class="tags" id="hobbies-tags"></div>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-language"></i>
-                    <h2>Languages</h2>
+                <!-- Languages -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-language"></i>
+                        <h2>Languages</h2>
+                    </div>
+                    <div class="tags" id="languages-tags"></div>
                 </div>
-                <div class="tags" id="languages-tags"></div>
             </div>
-        </div>
-
-        <div class="interactive-section floating">
-            <i class="fas fa-rocket" style="font-size: 3rem; color: var(--primary); opacity: 0.5;"></i>
         </div>
     </div>
 
     <script>
+        function unlockProfile(correctName) {
+            const nameInput = prompt("Enter the first name of the person whose profile this is:");
+            if (nameInput && nameInput.toLowerCase() === correctName.toLowerCase()) {
+                document.getElementById('privacy-box').classList.remove('privacy-locked');
+                document.getElementById('privacy-box').classList.add('privacy-unlocked');
+            } else if (nameInput) {
+                alert("Incorrect name. Access denied.");
+            }
+        }
+
         fetch('data.json')
             .then(res => res.json())
             .then(data => {
-                // Modified to find Arsen
                 const profile = data.find(p => p.identity.firstName === "Arsen");
                 if (!profile) return;
 
                 document.getElementById('full-name').textContent = `${profile.identity.firstName} ${profile.identity.lastName}`;
-                
-                // Safety check for tagline which is missing in Arsen's JSON
-                if (profile.identity.tagline) {
-                    document.getElementById('tagline').textContent = profile.identity.tagline;
-                }
-
+                document.getElementById('tagline').textContent = profile.identity.tagline || "Student & Tech Enthusiast";
                 document.getElementById('birthday').textContent = profile.identity.birthday;
                 document.getElementById('gender').textContent = profile.identity.gender;
-                
-                // Safety check for location which is missing in Arsen's JSON
                 document.getElementById('location').textContent = profile.identity.location || 'N/A';
-                
                 document.getElementById('ethnicity').textContent = profile.physicalStats.ethnicity;
-
                 document.getElementById('bench').textContent = profile.gymStats.prBench;
                 document.getElementById('squat').textContent = profile.gymStats.prSquat;
                 document.getElementById('deadlift').textContent = profile.gymStats.prDeadlift;
-
                 document.getElementById('cuisine').textContent = profile.favorites.foodCuisine;
                 document.getElementById('artist').textContent = profile.favorites.artist;
                 document.getElementById('movie').textContent = profile.favorites.movie;
                 document.getElementById('show').textContent = profile.favorites.show;
                 document.getElementById('book').textContent = profile.favorites.book;
-
                 document.getElementById('coding-exp').textContent = profile.skillsAndInterests.codingExperience;
 
                 const renderTags = (id, list) => {
                     const container = document.getElementById(id);
-                    if (!list) return; // Handle undefined lists
+                    if (!list) return;
                     list.forEach(item => {
                         const span = document.createElement('span');
                         span.className = 'tag';
@@ -339,7 +375,6 @@
                     });
                 };
 
-                // Added checks for arrays that might be missing
                 renderTags('projects-tags', profile.skillsAndInterests.projects || []);
                 renderTags('hobbies-tags', profile.skillsAndInterests.hobbies || []);
                 renderTags('languages-tags', profile.skillsAndInterests.languages || []);
