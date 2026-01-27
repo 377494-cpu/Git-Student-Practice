@@ -35,6 +35,43 @@ function renderPrivacyOverlay($correctName, $containerId = 'privacy-box') {
 }
 
 /**
+ * Calculates and returns gym ranks for all users
+ * 
+ * @return array The ranking data
+ */
+function getGymRanks() {
+    $json = file_get_contents('data.json');
+    $data = json_decode($json, true);
+    
+    $stats = ['prBench', 'prSquat', 'prDeadlift'];
+    $ranks = [];
+    
+    foreach ($stats as $stat) {
+        $values = [];
+        foreach ($data as $index => $person) {
+            $val = (int) filter_var($person['gymStats'][$stat], FILTER_SANITIZE_NUMBER_INT);
+            $values[$index] = $val;
+        }
+        
+        arsort($values);
+        
+        $rank = 1;
+        $prevVal = null;
+        $actualRank = 1;
+        foreach ($values as $index => $val) {
+            if ($prevVal !== null && $val < $prevVal) {
+                $rank = $actualRank;
+            }
+            $ranks[$index][$stat] = $rank;
+            $prevVal = $val;
+            $actualRank++;
+        }
+    }
+    
+    return $ranks;
+}
+
+/**
  * Generates a similarity card HTML that finds people with shared hobbies or languages
  * 
  * @param string $currentFirstName The first name of the person whose profile is being viewed

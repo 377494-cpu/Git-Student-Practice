@@ -148,6 +148,67 @@
             font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.5);
         }
+
+        /* Gym Ranks Styles */
+        .gym-stats-container {
+            position: relative;
+        }
+
+        .rank-badge {
+            position: absolute;
+            top: -10px;
+            right: -5px;
+            background: #ffd700;
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 10;
+        }
+
+        .stat:hover .rank-badge {
+            display: block;
+        }
+
+        .rank-card {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid #00d2ff;
+            border-radius: 8px;
+            padding: 10px;
+            width: 200px;
+            display: none;
+            z-index: 100;
+            margin-bottom: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .gym-stats-container:hover .rank-card {
+            display: block;
+        }
+
+        .rank-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .rank-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .rank-number {
+            color: #ffd700;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -155,12 +216,39 @@
     <div class="profiles-container" id="profiles"></div>
 
     <script>
+        // Rankings will be calculated on the client side for reactivity
+        function calculateRanks(data) {
+            const stats = ['prBench', 'prSquat', 'prDeadlift'];
+            const rankings = {};
+
+            stats.forEach(stat => {
+                const values = data.map((p, i) => ({
+                    index: i,
+                    val: parseInt(p.gymStats[stat].replace(/[^0-9]/g, ''))
+                }));
+
+                values.sort((a, b) => b.val - a.val);
+
+                let rank = 1;
+                values.forEach((v, i) => {
+                    if (i > 0 && v.val < values[i-1].val) {
+                        rank = i + 1;
+                    }
+                    if (!rankings[v.index]) rankings[v.index] = {};
+                    rankings[v.index][stat] = rank;
+                });
+            });
+            return rankings;
+        }
+
         fetch('data.json')
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('profiles');
+                const rankings = calculateRanks(data);
                 
-                data.forEach(person => {
+                data.forEach((person, index) => {
+                    const personRanks = rankings[index];
                     const initials = person.identity.firstName[0] + person.identity.lastName[0];
                     const card = document.createElement('div');
                     card.className = 'profile-card';
@@ -192,18 +280,38 @@
                         
                         <div class="section">
                             <div class="section-title">Gym PRs</div>
-                            <div class="gym-stats">
-                                <div class="stat">
-                                    <div class="stat-value">${person.gymStats.prBench}</div>
-                                    <div class="stat-label">Bench</div>
+                            <div class="gym-stats-container">
+                                <div class="rank-card">
+                                    <div style="font-size: 0.75rem; color: #00d2ff; margin-bottom: 8px; border-bottom: 1px solid rgba(0,210,255,0.2); padding-bottom: 4px;">Leaderboard Rank</div>
+                                    <div class="rank-item">
+                                        <span>Bench Press</span>
+                                        <span class="rank-number">#${personRanks.prBench}</span>
+                                    </div>
+                                    <div class="rank-item">
+                                        <span>Squat</span>
+                                        <span class="rank-number">#${personRanks.prSquat}</span>
+                                    </div>
+                                    <div class="rank-item">
+                                        <span>Deadlift</span>
+                                        <span class="rank-number">#${personRanks.prDeadlift}</span>
+                                    </div>
                                 </div>
-                                <div class="stat">
-                                    <div class="stat-value">${person.gymStats.prSquat}</div>
-                                    <div class="stat-label">Squat</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value">${person.gymStats.prDeadlift}</div>
-                                    <div class="stat-label">Deadlift</div>
+                                <div class="gym-stats">
+                                    <div class="stat" style="position: relative;">
+                                        <div class="rank-badge">#${personRanks.prBench}</div>
+                                        <div class="stat-value">${person.gymStats.prBench}</div>
+                                        <div class="stat-label">Bench</div>
+                                    </div>
+                                    <div class="stat" style="position: relative;">
+                                        <div class="rank-badge">#${personRanks.prSquat}</div>
+                                        <div class="stat-value">${person.gymStats.prSquat}</div>
+                                        <div class="stat-label">Squat</div>
+                                    </div>
+                                    <div class="stat" style="position: relative;">
+                                        <div class="rank-badge">#${personRanks.prDeadlift}</div>
+                                        <div class="stat-value">${person.gymStats.prDeadlift}</div>
+                                        <div class="stat-label">Deadlift</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
