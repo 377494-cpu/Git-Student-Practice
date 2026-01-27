@@ -172,7 +172,7 @@
                             <div>
                                 <div class="name">${person.identity.firstName} ${person.identity.lastName}</div>
                                 <div class="birthday">${person.identity.birthday} | ${person.identity.gender}</div>
-                                ${person.identity.firstName === 'Zaid' || person.identity.firstName === 'Darius' || person.identity.firstName === 'Arsen' ? `<a href="${person.identity.firstName.toLowerCase()}.php" style="color: #00d2ff; text-decoration: none; font-size: 0.8rem; display: block; margin-top: 0.5rem;">View Full Profile →</a>` : ''}
+                                ${person.identity.firstName === 'Zaid' || person.identity.firstName === 'Darius' || person.identity.firstName === 'Arsen' || person.identity.firstName === 'Nick' ? `<a href="${person.identity.firstName.toLowerCase()}.php" style="color: #00d2ff; text-decoration: none; font-size: 0.8rem; display: block; margin-top: 0.5rem;">View Full Profile →</a>` : ''}
                             </div>
                         </div>
                         
