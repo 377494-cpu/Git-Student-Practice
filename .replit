@@ -1,4 +1,4 @@
-modules = ["web", "python-3.12", "php-8.2"]
+modules = ["php-8.2"]
 [agent]
 expertMode = true
 
