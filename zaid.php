@@ -328,6 +328,7 @@
 
                 <!-- Similarities -->
                 <?php echo renderSimilarityCard('Zaid'); ?>
+                <?php echo renderGymRankings('Zaid'); ?>
             </div>
         </div>
     </div>

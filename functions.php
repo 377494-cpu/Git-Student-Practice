@@ -72,6 +72,56 @@ function getGymRanks() {
 }
 
 /**
+ * Generates the gym ranking HTML for individual profile pages
+ * 
+ * @param string $firstName The first name of the person
+ * @return string The HTML and Script for rankings
+ */
+function renderGymRankings($firstName) {
+    return '
+    <script>
+        (function() {
+            const firstName = "' . addslashes($firstName) . '";
+            fetch("data.json")
+                .then(res => res.json())
+                .then(data => {
+                    const stats = ["prBench", "prSquat", "prDeadlift"];
+                    const rankings = {};
+                    
+                    stats.forEach(stat => {
+                        const values = data.map((p, i) => ({
+                            index: i,
+                            name: p.identity.firstName,
+                            val: parseInt(p.gymStats[stat].replace(/[^0-9]/g, ""))
+                        }));
+                        
+                        values.sort((a, b) => b.val - a.val);
+                        
+                        let rank = 1;
+                        values.forEach((v, i) => {
+                            if (i > 0 && v.val < values[i-1].val) {
+                                rank = i + 1;
+                            }
+                            if (v.name === firstName) {
+                                rankings[stat] = rank;
+                            }
+                        });
+                    });
+                    
+                    // Update the UI
+                    const benchLabel = document.querySelector("span#bench")?.parentElement;
+                    const squatLabel = document.querySelector("span#squat")?.parentElement;
+                    const deadliftLabel = document.querySelector("span#deadlift")?.parentElement;
+                    
+                    if (benchLabel) benchLabel.innerHTML += ` <span style="color: #ffd700; font-size: 0.8rem; font-weight: bold; margin-left: 8px;">#${rankings.prBench}</span>`;
+                    if (squatLabel) squatLabel.innerHTML += ` <span style="color: #ffd700; font-size: 0.8rem; font-weight: bold; margin-left: 8px;">#${rankings.prSquat}</span>`;
+                    if (deadliftLabel) deadliftLabel.innerHTML += ` <span style="color: #ffd700; font-size: 0.8rem; font-weight: bold; margin-left: 8px;">#${rankings.prDeadlift}</span>`;
+                });
+        })();
+    </script>';
+}
+
+/**
  * Generates a similarity card HTML that finds people with shared hobbies or languages
  * 
  * @param string $currentFirstName The first name of the person whose profile is being viewed
