@@ -246,6 +246,7 @@
                     </div>
                     <ul class="info-list">
                         <li><span>Birthday</span> <span id="birthday">-</span></li>
+                        <li><span>Age</span> <span id="age">-</span></li>
                         <li><span>Gender</span> <span id="gender">-</span></li>
                         <li><span>Location</span> <span id="location">-</span></li>
                         <li><span>Ethnicity</span> <span id="ethnicity">-</span></li>
@@ -343,6 +344,17 @@
                 document.getElementById('full-name').textContent = `${profile.identity.firstName} ${profile.identity.lastName}`;
                 document.getElementById('tagline').textContent = profile.identity.tagline || "Student & Tech Enthusiast";
                 document.getElementById('birthday').textContent = profile.identity.birthday;
+                
+                // Calculate and set age
+                const birthDate = new Date(profile.identity.birthday);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                document.getElementById('age').textContent = age;
+
                 document.getElementById('gender').textContent = profile.identity.gender;
                 document.getElementById('location').textContent = profile.identity.location || 'N/A';
                 document.getElementById('ethnicity').textContent = profile.physicalStats.ethnicity;
