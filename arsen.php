@@ -325,6 +325,9 @@
                     </div>
                     <div class="tags" id="languages-tags"></div>
                 </div>
+
+                <!-- Similarities -->
+                <?php echo renderSimilarityCard('Arsen'); ?>
             </div>
         </div>
     </div>
