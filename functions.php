@@ -122,6 +122,19 @@ function renderGymRankings($firstName) {
 }
 
 /**
+ * Calculates the current age based on a birthdate
+ * 
+ * @param string $birthday The birthday in YYYY-MM-DD format
+ * @return int The calculated age
+ */
+function calculateAge($birthday) {
+    $birthDate = new DateTime($birthday);
+    $today = new DateTime('today');
+    $age = $birthDate->diff($today)->y;
+    return $age;
+}
+
+/**
  * Generates a similarity card HTML that finds people with shared hobbies or languages
  * 
  * @param string $currentFirstName The first name of the person whose profile is being viewed
